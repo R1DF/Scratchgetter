@@ -1,0 +1,45 @@
+[meta]
+name = "English"
+author = "R1DF"
+description = "The pre-installed English language file."
+
+[reusable]
+enterToContinue = "Press Enter to continue."
+enterToExit = "Press Enter to exit."
+months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+]
+
+[tests]
+testingConnection = "Testing internet connection..."
+requestData = "Request data:"
+internetConnectionSuccess = "Connection successful."
+internetConnectionFailure = "Connection failed!\nPlease check your internet connection."
+
+[introduction]
+welcome = "Welcome to Scratchgetter v1.0.0., written by R1DF."
+legalNotice = "All data is legally obtained by the Scratch API."
+optionsQuery = "Select what you would like to do:"
+options = [
+    "Get user information (requires username)",
+    "Get project information (requires project ID)",
+    "Get studio information (requires studio ID)",
+    "Change language",
+    "Quit"
+]
+
+[get_user]
+enterUsername = "Enter username:"
+enteredUser = "User:"
+userObtained = "User obtained."
