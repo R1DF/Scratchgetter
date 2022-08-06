@@ -1,0 +1,14 @@
+DO NOT MODIFY THIS DOCUMENT.
+USERNAME's user contents:
+IS_ST
+
+Join date and time: DATETIME
+Location: COUNTRY
+User ID: USER_ID
+Profile ID: PROFILE_ID
+
+ABOUT_ME
+
+WIWO
+
+API response link: https://api.scratch.mit.edu/users/USERNAME
