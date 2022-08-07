@@ -1,8 +1,6 @@
 # Preinstalled English date formatter
 def format_date(details, ld):
     # Sample variable: 2016-01-10T05:12:21.000Z
-    formatted = ""
-
     # Formatting date
     date, time = details.split("T")
     year, month, day = date.split("-")
@@ -17,10 +15,7 @@ def format_date(details, ld):
     else:
         ordinal = "th"
 
-    formatted += f"{day}{ordinal} {month} {year} at "
-
     # Formatting time
     time = time[:8]  # Cutting off the ".XXXZ"
-    formatted += time
 
-    return formatted
+    return f"{day}{ordinal} {month} {year} at {time}"
