@@ -4,6 +4,7 @@ import requests
 import datetime
 import questionary
 import importlib
+import codecs
 
 # Constants
 API_USER = "https://api.scratch.mit.edu/users/~/"
@@ -79,7 +80,7 @@ class UserProcess:
 
     def save_user(self, path, details, profile_picture_links):
         resolutions = ("90x90", "60x60", "55x55", "50x50", "32x32")
-        with open(path + ".txt", "w") as f:
+        with codecs.open(path + ".txt", encoding="utf-8", mode="w") as f:
             f.write(details)
             f.write(f"\n\n{self.ld['get_user']['PFPLinks']}\n")
             for resolution in range(len(resolutions)):
@@ -87,9 +88,8 @@ class UserProcess:
             f.write(f"\n{str(datetime.datetime.now())}")
 
     def reveal_user(self, details):
-        # Getting output
-        output = open(os.getcwd() + "\\templates\\" + self.ld["linked"]["userTemplateFile"], "r").read()[
-                 self.ld["linked"]["templateOffset"]:]
+        # Getting output from template
+        output = self.ld["templates"]["user"][self.ld["linked"]["templateOffset"]:]
 
         # Modifying template
         output = output.replace("USERNAME", details["username"])
