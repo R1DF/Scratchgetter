@@ -1,5 +1,6 @@
 # Imports
 from language_loader import LanguageLoader
+from language_changing_process import LanguageChangingProcess
 from user_getter import *
 import questionary
 import requests
@@ -17,6 +18,9 @@ os.system("title Scratchgetter")
 # Main loop
 class App:
     def __init__(self):
+        # Version number
+        self.version = "1.0.0"
+
         # Getting language
         self.ll = LanguageLoader()  # ll - language loader
         self.ld = self.ll.data  # ld - language data
@@ -61,6 +65,8 @@ class App:
                     pass
                 elif user_input == self.ld["introduction"]["options"][2]:
                     pass
+                elif user_input == self.ld["introduction"]["options"][3]:
+                    self.language_changing_process = LanguageChangingProcess(self)
                 else:
                     clear()
                     quit()
