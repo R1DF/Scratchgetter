@@ -11,6 +11,9 @@ def check_connection():
     except ConnectionError:
         return False
 
+def insert_success(ld):
+    print(ld["reusable"]["success"])
+
 def await_enter(ld, to_exit=False):
     input(ld["reusable"]["enterToContinue"] + "\n" if not to_exit else ld["reusable"]["enterToExit"] + "\n")
 
