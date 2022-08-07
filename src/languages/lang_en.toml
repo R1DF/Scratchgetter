@@ -1,7 +1,9 @@
 [meta]
 name = "English"
+file_name = "lang_en.toml"
 author = "R1DF"
 description = "The pre-installed English language file."
+for_version = "1.0.0"
 
 [linked]
 userTemplateFile = "user_lang_en.txt"
@@ -11,6 +13,7 @@ templateOffset = 29
 [reusable]
 yes = "Yes"
 no = "No"
+cancel = "Cancel"
 
 connectingToAPIAwaiter = "Connecting to the Scratch API..."
 collectingDataAwaiter = "Collecting request data..."
@@ -18,6 +21,7 @@ success = "Success."
 
 enterToContinue = "Press Enter to continue."
 enterToExit = "Press Enter to exit."
+
 monthsFormatted = [
     "January",
     "February",
@@ -39,25 +43,42 @@ requestData = "Request data:"
 internetConnectionSuccess = "Connection successful."
 internetConnectionFailure = "Connection failed!\nPlease check your internet connection."
 
+[templates]
+user = """
+DO NOT MODIFY THIS DOCUMENT.
+USERNAME's user contents:
+IS_ST
+
+Join date and time: DATETIME
+Location: COUNTRY
+User ID: USER_ID
+Profile ID: PROFILE_ID
+
+ABOUT_ME
+
+WIWO
+
+API response link: https://api.scratch.mit.edu/users/USERNAME\
+"""
+
 [introduction]
 welcome = "Welcome to Scratchgetter v1.0.0., written by R1DF."
 legalNotice = "All data is legally obtained by the Scratch API."
 optionsQuery = "Select what you would like to do:"
 options = [
-    "Get user information (requires username)",
-    "Get project information (requires project ID)",
-    "Get studio information (requires studio ID)",
-    "Change language",
-    "Quit"
+    "Get user information (requires username)", # 0
+    "Get project information (requires project ID)", # 1
+    "Get studio information (requires studio ID)", # 2
+    "Change language", # 3
+    "Quit" # 4
 ]
 
 [get_user]
 # Queries
 enterUsernameQuery = "Enter username:"
-enterFileFolderQuery = "Enter file folder (Tab for hints) :"
+enterFileFolderQuery = "Enter file folder (Press Tab for hints) :"
 enterFileNameQuery = "Enter file name:"
 saveFileQuery = "Save the text file?"
-
 
 # Awaiters
 loadingSTStatusAwaiter = "Checking ST status..."
@@ -82,3 +103,12 @@ user = "User:"
 userObtained = "User obtained."
 imageAvailability = "Links to images for the profile pictures are accessible in a text file."
 PFPLinks = "Profile picture links:"
+
+[language_changing]
+introduction = "Change language"
+languageListIntroduction = "List of selectable languages:"
+ifOne = "You only have one language installed. Please install more to select."
+ifZero = "...Not cool. Now you have to reinstall me because I can't function without a valid language file pack."
+selectLanguageQuery = "Select language:"
+author = "Author:"
+description = "Description:"

@@ -1,12 +1,28 @@
 [meta]
 name = "Ελληνικά"
+file_name = "lang_gr.toml"
 author = "Άγγελος"
 description = "Το προεγκατεστημένο αρχείο της ελληνικής γλώσσας."
+for_version = "1.0.0"
+
+[linked]
+userTemplateFile = "user_lang_gr.txt"
+dateFormatterFile = "date_formatters.df_lang_gr"
+templateOffset = 34 #
 
 [reusable]
+yes = "ναι"
+no = "όχι"
+cancel = "Ακύρωση"
+
+connectingToAPIAwaiter = "Σύνδεση με το Scratch API..."
+collectingDataAwaiter = "Συλλογή δεδομένων αίτησης..."
+success = "Επιτυχία."
+
 enterToContinue = "Πατήστε το πλήκτρο Enter για να συνεχίσετε."
 enterToExit = "Πατήστε το πλήκτρο Enter για έξοδο."
-months = [
+
+monthsFormatted = [
     "Ιανουαρίου",
     "Φεβρουαρίου",
     "Μαρτίου",
@@ -27,6 +43,25 @@ requestData = "Αίτημα δεδομένων:"
 internetConnectionSuccess = "Επιτυχής σύνδεση."
 internetConnectionFailure = "Αποτυχία σύνδεσης!\nΠαρακαλώ ελέγξτε την σύνδεσή σας στο διαδίκτυο."
 
+[templates]
+user = """
+ΜΗΝ ΠΑΡΑΠΟΙΉΣΕΤΕ ΑΥΤΌ ΤΟ ΈΓΓΡΑΦΟ.
+Τα περιεχόμενα χρήστη του USERNAME:
+IS_ST
+
+Ημερομηνία και ώρα εγγραφής: DATETIME
+Περιοχή: COUNTRY
+Ταυτότητα χρήστη: USER_ID
+Ταυτότητα προφίλ: PROFILE_ID
+
+ABOUT_ME
+
+WIWO
+
+Σύνδεσμος ανταπόκρισης API:
+https://api.scratch.mit.edu/users/USERNAME\
+"""
+
 [introduction]
 welcome = "Καλώς ήρθατε στο Scratchgetter v1.0.0., γραμμένο από τον R1DF."
 legalNotice = "Όλα τα δεδομένα συλλέχθηκαν νόμιμα από το Scratch API."
@@ -38,3 +73,43 @@ options = [
     "Αλλαγή γλώσσας",
     "Έξοδος"
 ]
+
+[get_user]
+# Queries
+enterUsernameQuery = "Πληκτρολογήστε το όνομα χρήστη:"
+enterFileFolderQuery = "Εισάγετε τον φάκελο του αρχείου (Πιέστε το πλήκτρο Tab για στοιχεία) :"
+enterFileNameQuery = "Πληκτρολογήστε το όνομα του αρχείου:"
+saveFileQuery = "Αποθήκευση του γραπτού αρχείου;"
+
+# Awaiters
+loadingSTStatusAwaiter = "Έλεγχος ST status..."
+loadingJoinDateAwaiter = "Φόρτωση ημερομηνίας εγγραφής..."
+loadingIDAwaiter = "Φόρτωση ταυτότητας..."
+loadingProfileContentsAwaiter = "Φόρτωση περιεχομένων προφίλ..."
+loadingAboutMeAwaiter = "Φόρτωση στήλης \"Σχετικά με εμένα\" ..."
+loadingWIWOAwaiter = "Φόρτωση στήλης \"Με τι ασχολούμαι\" ..."
+loadingCountryAwaiter = "Φόρτωση χώρας..."
+loadingPFPLinksAwaiter = "Φόρτωση συνδέσμου εικόνας προφίλ..."
+
+# Template Replacers
+isSTReplacer = "Ο χρήστης είναι μέλος της Scratch Team."
+notSTReplacer = "Ο χρήστης δεν είναι μέλος της Scratch Team."
+hasAboutMeReplacer = "Σχετικά με εμένα"
+noAboutMeReplacer = "Η στήλη \"Σχετικά με εμένα\" του χρήστη είναι άδεια."
+hasWIWOReplacer = "Με τι ασχολούμαι"
+noWIWOReplacer = "Η στήλη \"Με τι ασχολούμαι\" του χρήστη είναι άδεια."
+
+# Other text
+user = "Χρήστης:"
+userObtained = "Χρήστης ελήφθη."
+imageAvailability = "Οι σύνδεσμοι για τις εικόνες προφίλ είναι προσβάσιμες σε ένα γραπτό αρχείο."
+PFPLinks = "Σύνδεσμοι εικόνων προφίλ:"
+
+[language_changing]
+introduction = "Αλλαγή γλώσσας"
+languageListIntroduction = "Λίστα επιλογών γλώσσας:"
+ifOne = "Έχετε εγκαταστήσει μόνο μια γλώσσα. Παρακαλώ εγκαταστήστε περισσότερες για να επιλέξετε."
+ifZero = "... Μπράβο :( Τώρα πρέπει να εγκαταστήσετε το πρόγραμμα ξανά γιατί δεν μπορεί να λειτουργήσει χωρίς έγκυρο πακέτο αρχείων γλώσσας!"
+selectLanguageQuery = "Επιλογή γλώσσας:"
+author = "Συγγραφέας:"
+description = "Περιγραφή:"
