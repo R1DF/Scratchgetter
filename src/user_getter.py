@@ -3,6 +3,7 @@ from tools import *
 import requests
 import datetime
 import questionary
+import importlib
 
 # Constants
 API_USER = "https://api.scratch.mit.edu/users/~/"
@@ -16,47 +17,11 @@ class UserProcess:
         self.ll = self.master.ll
         self.ld = self.master.ld
 
+        # Getting date formatter
+        self.format_date = importlib.import_module(f"{self.ld['linked']['dateFormatterFile']}").format_date
+
         # Beginning process
         self.begin_user_process()
-
-    def format_date(self, details):
-        # Sample variable: 2016-01-10T05:12:21.000Z
-        formatted = ""
-
-        # Formatting date
-        date, time = details.split("T")
-        year, month, day = date.split("-")
-        month = {
-            "01": "January",
-            "02:": "February",
-            "03": "March",
-            "04": "April",
-            "05": "May",
-            "06": "June",
-            "07": "July",
-            "08": "August",
-            "09": "September",
-            "10": "October",
-            "11": "November",
-            "12": "December"
-        }[month]
-
-        if day[-1] == "1" and day != "11":
-            ordinal = "st"
-        elif day[-1] == "2" and day != "12":
-            ordinal = "nd"
-        elif day[-1] == "3" and day != "13":
-            ordinal = "rd"
-        else:
-            ordinal = "th"
-
-        formatted += f"{day}{ordinal} {month} {year} at "
-
-        # Formatting time
-        time = time[:8]  # Cutting off the ".XXXZ"
-        formatted += time
-
-        return formatted
 
     def get_user(self, profile):
         # Connecting to the API
@@ -77,7 +42,7 @@ class UserProcess:
 
         # Getting join date
         log(self.ld["get_user"]["loadingJoinDateAwaiter"])
-        profile_data["join_date"] = self.format_date(json_data["history"]["joined"])
+        profile_data["join_date"] = self.format_date(json_data["history"]["joined"], self.ld)
         insert_success(self.ld)
 
         # Getting user ID

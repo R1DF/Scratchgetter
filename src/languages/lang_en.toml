@@ -5,6 +5,7 @@ description = "The pre-installed English language file."
 
 [linked]
 userTemplateFile = "user_lang_en.txt"
+dateFormatterFile = "date_formatters.df_lang_en"
 templateOffset = 29
 
 [reusable]
@@ -17,7 +18,7 @@ success = "Success."
 
 enterToContinue = "Press Enter to continue."
 enterToExit = "Press Enter to exit."
-months = [
+monthsFormatted = [
     "January",
     "February",
     "March",
