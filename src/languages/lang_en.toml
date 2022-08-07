@@ -3,7 +3,18 @@ name = "English"
 author = "R1DF"
 description = "The pre-installed English language file."
 
+[linked]
+userTemplateFile = "user_lang_en.txt"
+templateOffset = 29
+
 [reusable]
+yes = "Yes"
+no = "No"
+
+connectingToAPIAwaiter = "Connecting to the Scratch API..."
+collectingDataAwaiter = "Collecting request data..."
+success = "Success."
+
 enterToContinue = "Press Enter to continue."
 enterToExit = "Press Enter to exit."
 months = [
@@ -40,6 +51,33 @@ options = [
 ]
 
 [get_user]
-enterUsername = "Enter username:"
-enteredUser = "User:"
+# Queries
+enterUsernameQuery = "Enter username:"
+enterFileFolderQuery = "Enter file folder (Tab for hints) :"
+enterFileNameQuery = "Enter file name:"
+saveFileQuery = "Save the text file?"
+
+
+# Awaiters
+loadingSTStatusAwaiter = "Checking ST status..."
+loadingJoinDateAwaiter = "Loading join date..."
+loadingIDAwaiter = "Loading ID..."
+loadingProfileContentsAwaiter = "Loading profile contents..."
+loadingAboutMeAwaiter = "Loading \"About Me\" section..."
+loadingWIWOAwaiter = "Loading \"What I'm Working On\" section..."
+loadingCountryAwaiter = "Loading country..."
+loadingPFPLinksAwaiter = "loading profile picture links..."
+
+# Template Replacers
+isSTReplacer = "The user is a member of the Scratch Team."
+notSTReplacer = "The user is not a member of the Scratch Team."
+hasAboutMeReplacer = "About Me"
+noAboutMeReplacer = "The user's \"About Me\" section is empty."
+hasWIWOReplacer = "What I'm Working On"
+noWIWOReplacer = "The user's \"What I'm Working On\" section is empty."
+
+# Other text
+user = "User:"
 userObtained = "User obtained."
+imageAvailability = "Links to images for the profile pictures are accessible in a text file."
+PFPLinks = "Profile picture links:"
