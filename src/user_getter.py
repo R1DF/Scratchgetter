@@ -28,12 +28,20 @@ class UserProcess:
         # Connecting to the API
         log(self.ld["reusable"]["connectingToAPIAwaiter"])
         response = requests.get(API_USER.replace("~", profile))
-        print(self.ld["reusable"]["success"])
+        insert_success(self.ld)
+
 
         # Loading data
         log(self.ld["reusable"]["collectingDataAwaiter"])
         json_data = response.json()
         insert_success(self.ld)
+
+        # Checking if the user exists
+        log("Validating user existence...")
+        try:
+            json_data["id"]  # 404 responses do not have IDs
+        except KeyError:
+            return None
 
         # Creating dictionary, loading ST status and username
         profile_data = {"username": json_data["username"]}
@@ -89,7 +97,7 @@ class UserProcess:
 
     def reveal_user(self, details):
         # Getting output from template
-        output = self.ld["templates"]["user"][self.ld["linked"]["templateOffset"]:]
+        output = self.ld["templates"]["user"]
 
         # Modifying template
         output = output.replace("USERNAME", details["username"])
@@ -123,6 +131,15 @@ class UserProcess:
         clear()
         print(self.ld["get_user"]["user"], username)
         user_data = self.get_user(username)
+
+        # Checking if profile even exists
+        if user_data is None:
+            insert_error(self.ld)
+            print(self.ld["get_user"]["userInexistent"].replace("USERNAME", username))
+            await_enter(self.ld, to_exit=True)
+            clear()
+            return
+
         break_line()
         print(self.ld["get_user"]["userObtained"])
         await_enter(self.ld)
@@ -131,7 +148,6 @@ class UserProcess:
         clear()
         formatted_response, profile_pictures = self.reveal_user(user_data)
 
-        break_line()
         print(self.ld["get_user"]["imageAvailability"])
         should_save = questionary.select(
             self.ld["get_user"]["saveFileQuery"],
