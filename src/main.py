@@ -2,13 +2,13 @@
 from language_loader import LanguageLoader
 from language_changing_process import LanguageChangingProcess
 from user_getter import *
+from project_getter import *
 import questionary
 import requests
 import os
 
 # Constants
 API = "https://api.scratch.mit.edu"
-API_PROJECT = "https://api.scratch.mit.edu/projects/~/"
 API_STUDIO = "https://api.scratch.mit.edu/studios/~/"
 
 # Initial setting up
@@ -62,7 +62,7 @@ class App:
                     self.user_process = UserProcess(self)
 
                 elif user_input == self.ld["introduction"]["options"][1]:
-                    pass
+                    self.project_process = ProjectProcess(self)
                 elif user_input == self.ld["introduction"]["options"][2]:
                     pass
                 elif user_input == self.ld["introduction"]["options"][3]:
