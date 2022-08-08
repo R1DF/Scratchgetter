@@ -6,9 +6,7 @@ description = "The pre-installed English language file."
 for_version = "1.0.0"
 
 [linked]
-userTemplateFile = "user_lang_en.txt"
 dateFormatterFile = "date_formatters.df_lang_en"
-templateOffset = 29
 
 [reusable]
 yes = "Yes"
@@ -17,6 +15,7 @@ cancel = "Cancel"
 
 connectingToAPIAwaiter = "Connecting to the Scratch API..."
 collectingDataAwaiter = "Collecting request data..."
+error = "Error!"
 success = "Success."
 
 enterToContinue = "Press Enter to continue."
@@ -45,7 +44,6 @@ internetConnectionFailure = "Connection failed!\nPlease check your internet conn
 
 [templates]
 user = """
-DO NOT MODIFY THIS DOCUMENT.
 USERNAME's user contents:
 IS_ST
 
@@ -58,7 +56,36 @@ ABOUT_ME
 
 WIWO
 
-API response link: https://api.scratch.mit.edu/users/USERNAME\
+API response link: https://api.scratch.mit.edu/users/USERNAME/\
+"""
+
+project = """
+Project contents:
+ID: PROJECT_ID
+IS_VISIBLE
+IS_REMIX
+
+Title: \"TITLE\"
+Author: AUTHOR
+Token: PROJECT_TOKEN
+Created on DATE_CREATED
+Last edit on DATE_LAST_EDITED
+Published on DATE_PUBLISHED
+
+VIEWS views
+LOVES loves
+FAVOURITES favourites
+REMIXES remixes
+
+INSTRUCTIONS
+
+DESCRIPTION
+
+HAS_COMMENTS
+
+
+API response link: https//api.scratch.mit.edu/projects/PROJECT_ID/
+\
 """
 
 [introduction]
@@ -103,6 +130,45 @@ user = "User:"
 userObtained = "User obtained."
 imageAvailability = "Links to images for the profile pictures are accessible in a text file."
 PFPLinks = "Profile picture links:"
+userInexistent = "The user USERNAME does not exist."
+
+[get_project]
+#Queries
+enterProjectIDQuery = "Enter project ID:"
+
+# Awaiters
+loadingTitleAwaiter = "Loading title..."
+loadingVisibilityAwaiter = "Determining if the projet is visible..."
+loadingIsRemixAwaiter = "Determining if the project is a remix..."
+loadingAuthorAwaiter = "Loading author..."
+loadingTokenAwaiter = "Loading project token..."
+loadingCreationDateAwaiter = "Loading creation date..."
+loadingEditDateAwaiter = "Loading date since last edit..."
+loadingPublishDateAwaiter = "Loading date since last published..."
+loadingViewsAwaiter = "Loading views..."
+loadingLovesAwaiter = "Loading loves..."
+loadingFavouritesAwaiter = "Loading favourites..."
+loadingRemixesAwaiter = "Loading remixes..."
+loadingInstructionsAwaiter = "Loading instructions..."
+loadingDescriptionAwaiter = "Loading description..."
+loadingHasCommentsAwaiter = "Determining if the project allows commenting..."
+loadingThumbnailsAwaiter = "Loading thumbnails..."
+
+# Template Replacers
+isRemixReplacer = "The project is a remix. (Parent ID: PARENT_ID; Root ID: ROOT_ID)"
+notRemixReplacer = "The project is not a remix."
+isVisibleReplacer = "The project is visible."
+notVisibleReplacer = "The project is not visible."
+hasInstructionsReplacer = "Instructions:"
+noInstructionsReplacer = "The project's \"Instructions\" section is empty."
+hasDescriptionReplacer = "Description:"
+noDescriptionReplacer = "The project's \"Description\" section is empty."
+hasCommentsReplacer = "The project allows comments to be added."
+noCommentsReplacer = "The project's comments section is closed."
+
+# Other text
+projectID = "Project ID:"
+projectInexistent = "The project with an ID of PROJECT_ID does not exist."
 
 [language_changing]
 introduction = "Change language"
