@@ -4,7 +4,6 @@ import requests
 import datetime
 import questionary
 import importlib
-import codecs
 
 # Constants
 API_USER = "https://api.scratch.mit.edu/users/~/"
@@ -42,6 +41,7 @@ class UserProcess:
             json_data["id"]  # 404 responses do not have IDs
         except KeyError:
             return None
+        insert_success(self.ld)
 
         # Creating dictionary, loading ST status and username
         profile_data = {"username": json_data["username"]}
@@ -88,7 +88,7 @@ class UserProcess:
 
     def save_user(self, path, details, profile_picture_links):
         resolutions = ("90x90", "60x60", "55x55", "50x50", "32x32")
-        with codecs.open(path + ".txt", encoding="utf-8", mode="w") as f:
+        with open(path + ".txt", encoding="utf-8", mode="w") as f:
             f.write(details)
             f.write(f"\n\n{self.ld['get_user']['PFPLinks']}\n")
             for resolution in range(len(resolutions)):
@@ -148,9 +148,10 @@ class UserProcess:
         clear()
         formatted_response, profile_pictures = self.reveal_user(user_data)
 
+        # File saving option
         print(self.ld["get_user"]["imageAvailability"])
         should_save = questionary.select(
-            self.ld["get_user"]["saveFileQuery"],
+            self.ld["reusable"]["saveFileQuery"],
             choices=[
                 self.ld["reusable"]["yes"],
                 self.ld["reusable"]["no"]
@@ -158,11 +159,11 @@ class UserProcess:
         ).ask()
 
         if should_save == self.ld["reusable"]["yes"]:
-            path = questionary.path(self.ld["get_user"]["enterFileFolderQuery"], only_directories=True,
+            path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
                                     default=os.getcwd() + "\\saves\\").ask()
-            file_name = questionary.text(self.ld["get_user"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
+            file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
                                          default=username).ask().strip()
             self.save_user(path + "\\" + file_name, formatted_response, profile_pictures)
             print(self.ld["reusable"]["success"])
-            await_enter(self.ld)
+            await_enter(self.ld, to_exit=True)
         clear()

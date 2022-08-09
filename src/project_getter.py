@@ -9,7 +9,7 @@ import importlib
 API_PROJECT = "https://api.scratch.mit.edu/projects/~/"
 
 
-# ProkectProcess class
+# ProjectProcess class
 class ProjectProcess:
     def __init__(self, master):
         # Inheriting
@@ -22,6 +22,15 @@ class ProjectProcess:
 
         # Beginning process
         self.begin_project_process()
+
+    def save_project(self, path, details, thumbnails):
+        resolutions = ("480x360", "282x218", "216x163", "200x200", "144x108", "135x102", "100x80")
+        with open(path + ".txt", encoding="utf-8", mode="w") as f:
+            f.write(details)
+            f.write(f"\n\n{self.ld['get_project']['thumbnailLinks']}\n")
+            for resolution in range(len(resolutions)):
+                f.write(f"{resolutions[resolution]}: {thumbnails[resolutions[resolution]]}\n")
+            f.write(f"\n{str(datetime.datetime.now())}")
 
     def reveal_project(self, details):
         # Getting output from template
@@ -37,8 +46,6 @@ class ProjectProcess:
             "PROJECT_TOKEN", details["token"]
         ).replace(
             "IS_REMIX", self.ld["get_project"]["notRemixReplacer"] if not details["isRemix"] else self.ld["get_project"]["isRemixReplacer"].replace("PARENT_ID", str(details["parentID"])).replace("ROOT_ID", str(details["rootID"]))
-        ).replace(
-            "IS_VISIBLE", self.ld["get_project"]["isVisibleReplacer"] if details["visibility"] else self.ld["get_project"]["notVisibleReplacer"]
         ).replace(
             "DATE_CREATED", details["creationDate"]
         ).replace(
@@ -187,5 +194,22 @@ class ProjectProcess:
         clear()
         formatted_response, thumbnails = self.reveal_project(project_data)
 
-        input()
+        # File saving option
+        print(self.ld["get_project"]["thumbnailAvailability"])
+        should_save = questionary.select(
+            self.ld["reusable"]["saveFileQuery"],
+            choices=[
+                self.ld["reusable"]["yes"],
+                self.ld["reusable"]["no"]
+            ]
+        ).ask()
+
+        if should_save == self.ld["reusable"]["yes"]:
+            path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
+                                    default=os.getcwd() + "\\saves\\").ask()
+            file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
+                                         default=f"project_{project_id}").ask().strip()
+            self.save_project(path + "\\" + file_name, formatted_response, thumbnails)
+            print(self.ld["reusable"]["success"])
+            await_enter(self.ld, to_exit=True)
         clear()
