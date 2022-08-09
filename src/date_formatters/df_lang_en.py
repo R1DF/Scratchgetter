@@ -4,7 +4,14 @@ def format_date(details, ld):
     # Formatting date
     date, time = details.split("T")
     year, month, day = date.split("-")
-    month = ld["reusable"]["monthsFormatted"][int(month)]
+
+    if day[0] == "0":
+        day = day[1]
+
+    if month[0] == "0":
+        month = month[1]
+
+    month = ld["reusable"]["monthsFormatted"][int(month)-1]
 
     if day[-1] == "1" and day != "11":
         ordinal = "st"
