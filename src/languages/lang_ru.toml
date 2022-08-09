@@ -2,27 +2,34 @@
 name = "Русский"
 file_name = "lang_ru.toml"
 author = "R1DF"
-description = "Основноый языковой пакет русского языка.."
+description = "Основноый языковой пакет русского языка."
 for_version = "1.0.0"
 
 [linked]
 dateFormatterFile = "date_formatters.df_lang_ru"
-templateOffset = 29
 
 [reusable]
+# Queries
+enterFileFolderQuery = "Введите папку файла (Нажмите Tab для подсказок) :"
+enterFileNameQuery = "Введите имя файла:"
+saveFileQuery = "Сохранить текстовый файл?"
+
 yes = "Да"
 no = "Нет"
+cancel = "Отмена"
 
 connectingToAPIAwaiter = "Подклюение к Scratch API..."
 collectingDataAwaiter = "Сбор данных запроса..."
+
 success = "Выполнено."
+error = "Ошибка!"
 
 enterToContinue = "Нажмите Enter чтобы продолжить."
 enterToExit = "Нажмите Enter чтобы выйти."
 
 monthsFormatted = [
     "января",
-    "фebruary",
+    "февраля",
     "марта",
     "апреля",
     "мая",
@@ -39,75 +46,189 @@ monthsFormatted = [
 testingConnection = "Проверка интернет-соединения..."
 requestData = "Данные запроса:"
 internetConnectionSuccess = "Проверка выполнена."
-internetConnectionFailure = "Соединение не удалось!\nPlease check your internet connection."
+internetConnectionFailure = "Соединение не удалось!\nПроверьте интернет соединение."
 
 [templates]
 user = """
-DO NOT MODIFY THIS DOCUMENT.
-USERNAME's user contents:
+Содержание пользователя USERNAME:
 IS_ST
 
-Join date and time: DATETIME
-Location: COUNTRY
-User ID: USER_ID
-Profile ID: PROFILE_ID
+Дата и время присоединения: DATETIME
+Страна: COUNTRY
+ID пользователя: USER_ID
+ID профиля: PROFILE_ID
 
 ABOUT_ME
 
 WIWO
 
-API response link: https://api.scratch.mit.edu/users/USERNAME\
+Ссылка на данных с API: https://api.scratch.mit.edu/users/USERNAME\
+"""
+
+project = """
+Содержание проекта:
+ID: PROJECT_ID
+IS_REMIX
+
+Название: \"TITLE\"
+Автор: AUTHOR
+\"Токен\": PROJECT_TOKEN
+Создан DATE_CREATED
+Редактирован DATE_LAST_EDITED
+Опубликован DATE_PUBLISHED
+
+Просмотров: VIEWS
+Отметок \"люблю\": LOVES
+Добавок к избранных FAVOURITES
+Ремиксов: REMIXES
+
+INSTRUCTIONS
+
+DESCRIPTION
+
+HAS_COMMENTS
+
+Ссылка на данных с API: https//api.scratch.mit.edu/projects/PROJECT_ID/\
+"""
+
+studio = """
+Содержание стужиии:
+ID: STUDIO_ID
+ALLOWS_COMMENTING
+ALLOWS_ANY_PROJECT
+
+ID организатора: HOST_ID
+Создан DATE_CREATED
+Редактирован on DATE_LAST_EDITED
+
+Комментариев: COMMENTS
+Подпичсиков: FOLLOWERS
+Менеджеров: MANAGERS
+Проектов: PROJECTS
+
+DESCRIPTION
+
+
+Ссылка на данных с: https//api.scratch.mit.edu/studios/STUDIO_ID/\
 """
 
 [introduction]
-welcome = "Welcome to Scratchgetter v1.0.0., written by R1DF."
-legalNotice = "All data is legally obtained by the Scratch API."
-optionsQuery = "Select what you would like to do:"
+welcome = "Добро пожаловать к Scratchgetter v1.0.0., написанно R1DF."
+legalNotice = "Все данне получены законно используя Scratch API."
+optionsQuery = "Выберите что вы желаете сделать:"
 options = [
-    "Get user information (requires username)", # 0
-    "Get project information (requires project ID)", # 1
-    "Get studio information (requires studio ID)", # 2
-    "Change language", # 3
-    "Quit" # 4
+    "Получить данные пользователя (нужен имя)", # 0
+    "Получить данные проекта (нужен ID)", # 1
+    "Получить данные студии (нужен ID)", # 2
+    "Изменить язык", # 3
+    "Выйти" # 4
 ]
 
 [get_user]
 # Queries
-enterUsernameQuery = "Enter username:"
-enterFileFolderQuery = "Enter file folder (Press Tab for hints) :"
-enterFileNameQuery = "Enter file name:"
-saveFileQuery = "Save the text file?"
+enterUsernameQuery = "Введите имя пользователя:"
 
 # Awaiters
-loadingSTStatusAwaiter = "Checking ST status..."
-loadingJoinDateAwaiter = "Loading join date..."
-loadingIDAwaiter = "Loading ID..."
-loadingProfileContentsAwaiter = "Loading profile contents..."
-loadingAboutMeAwaiter = "Loading \"About Me\" section..."
-loadingWIWOAwaiter = "Loading \"What I'm Working On\" section..."
-loadingCountryAwaiter = "Loading country..."
-loadingPFPLinksAwaiter = "loading profile picture links..."
+loadingSTStatusAwaiter = "Проверка членства ST..."
+loadingJoinDateAwaiter = "Загрузка даты соединения..."
+loadingIDAwaiter = "Загрузка ID..."
+loadingProfileContentsAwaiter = "Загрузка данных профиля..."
+loadingAboutMeAwaiter = "Загрузка \"Обо мне\" секции..."
+loadingWIWOAwaiter = "Загрузка \"Над чём я работая\" секции..."
+loadingCountryAwaiter = "Загрузка страны..."
+loadingPFPLinksAwaiter = "Загрузка ссылок иконок..."
 
 # Template Replacers
-isSTReplacer = "The user is a member of the Scratch Team."
-notSTReplacer = "The user is not a member of the Scratch Team."
-hasAboutMeReplacer = "About Me"
-noAboutMeReplacer = "The user's \"About Me\" section is empty."
-hasWIWOReplacer = "What I'm Working On"
-noWIWOReplacer = "The user's \"What I'm Working On\" section is empty."
+isSTReplacer = "Пользователь является членом команды Scratch."
+notSTReplacer = "Пользователь не является членом команды Scratch."
+hasAboutMeReplacer = "Обо мне"
+noAboutMeReplacer = "Секция \"Обо мне\" данного пользователя пустая."
+hasWIWOReplacer = "Над чём я работаю"
+noWIWOReplacer = "Секция \"Над чём я работаю\" данного пользователя пустая."
 
 # Other text
-user = "User:"
-userObtained = "User obtained."
-imageAvailability = "Links to images for the profile pictures are accessible in a text file."
-PFPLinks = "Profile picture links:"
+user = "Пользователь:"
+userObtained = "Пользователь найден."
+imageAvailability = "Ссылки на иконок отображаются в текстовом файле."
+PFPLinks = "Ссылки иконок:"
+userInexistent = "Пользователь с имнем USERNAME не существует."
+
+[get_project]
+# Queries
+enterProjectIDQuery = "Введите ID проекта:"
+
+# Awaiters
+loadingTitleAwaiter = "Загрузка имени..."
+loadingVisibilityAwaiter = "Определяю видимость проекта..." # useless?
+loadingIsRemixAwaiter = "Определяю, если проект является ремиксом"
+loadingAuthorAwaiter = "Загрузка автора..."
+loadingTokenAwaiter = "Загрузка \"токена\"..."
+loadingCreationDateAwaiter = "Загрузка даты создания..."
+loadingEditDateAwaiter = "Загрузка даты последнего редактирования..."
+loadingPublishDateAwaiter = "Загрузка даты опубликования..."
+loadingViewsAwaiter = "Загрузка просмотров..."
+loadingLovesAwaiter = "Загрузка отметок \"люблю\"..."
+loadingFavouritesAwaiter = "Загрузка добавок к избранных..."
+loadingRemixesAwaiter = "Загрузка ремиксов..."
+loadingInstructionsAwaiter = "Загрузка истнрукции проекта..."
+loadingDescriptionAwaiter = "Загрузка описания проекта..."
+loadingHasCommentsAwaiter = "Опреляю если можно комментировать на проект..."
+loadingThumbnailsAwaiter = "Загрузка изображений..."
+
+# Template Replacers
+isRemixReplacer = "Проект является ремиксом. (Parent ID: PARENT_ID; Root ID: ROOT_ID)"
+notRemixReplacer = "Проект не является ремиксом"
+hasInstructionsReplacer = "Инструкции:"
+noInstructionsReplacer = "Секция \"Инструкции\" пустая."
+hasDescriptionReplacer = "Описание:"
+noDescriptionReplacer = "Секция \"Примечания и благодарности\" пустая."
+hasCommentsReplacer = "Комментировать на проект можно."
+noCommentsReplacer = "TКомментировать на проект нельзя."
+
+# Other text
+projectID = "ID проекта:"
+projectInexistent = "Проект с ID PROJECT_ID не существует или не опубликован."
+thumbnailAvailability = "Ссылки на изображения появляются в текстовом файле."
+thumbnailLinks = "Ссылки на изображения:"
+
+[get_studio]
+# Queries
+enterStudioIDQuery = "Введите ID студии:"
+
+# Awaiters
+loadingTitleAwaiter = "Загрузка имени студии..."
+loadingHostIDAwaiter = "Загрузка ID организатора студии..."
+loadingDescriptionAwaiter = "Загрузка описания..."
+loadingHasCommentsAwaiter = "Определяю если можно комментировать..."
+loadingIsOpenAwaiter = "Определяю кто может добавить проекты..."
+loadingCommentsAwaiter = "Загрузка количества комментарий..."
+loadingFollowersAwaiter = "Загрузка количества подписчиков..."
+loadingManagersAwaiter = "Загрузка количества менеджеров..."
+loadingProjectsAwaiter = "Загрузка коичества проектов..."
+loadingCreationDateAwaiter = "Загрузка даты создания..."
+loadingEditDateAwaiter = "Загрузка даты последнего редактирования..."
+loadingThumbnailAwaiter = "Загрузка ссылки на изображение..."
+
+# Template Replacers
+hasDescriptionReplacer = "Описание:"
+noDescriptionReplacer = "У студии описание пустое."
+hasCommentsReplacer = "В студии комментировать можно."
+noCommentsReplacer = "В студии комментировать нельзя."
+allowsAnyProjectsReplacer = "Любой может добавить проекты в студию."
+forbidsAnyProjectsReplacer = "Только члены студии могут добавить проекты в студию."
+
+# Other text
+studioID = "ID студии:"
+studioInexistent = "Студия с ID STUDIO_DATA не существует."
+thumbnailAvailability = "Ссылка на изображение студии есть в текстовом файле."
+thumbnailLink = "Ссылка на изображение (170x100):"
 
 [language_changing]
-introduction = "Change language"
-languageListIntroduction = "List of selectable languages:"
-ifOne = "You only have one language installed. Please install more to select."
-ifZero = "...Not cool. Now you have to reinstall me because I can't function without a valid language file pack."
-selectLanguageQuery = "Select language:"
-author = "Author:"
-description = "Description:"
-cancel = "Cancel"
+introduction = "Изменить язык"
+languageListIntroduction = "Список языков:"
+ifOne = "У вас только один язык. Загрузите больше чтобы они появились."
+ifZero = "...Очень умно. Ты что, не знал что я не могу работать без языкового пакета?"
+selectLanguageQuery = "Изменить язык:"
+author = "Автор:"
+description = "Описание:"
+cancel = "Отмена"
