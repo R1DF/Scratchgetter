@@ -159,7 +159,7 @@ class StudioProcess:
         # Checking if the project actually exists
         if studio_data is None:
             insert_error(self.ld)
-            print(self.ld["get_studiot"]["studioInexistent"].replace("STUDIO_ID", studio_id))
+            print(self.ld["get_studio"]["studioInexistent"].replace("STUDIO_ID", studio_id))
             await_enter(self.ld, to_exit=True)
             clear()
             return

@@ -173,6 +173,38 @@ projectInexistent = "Δεν υπάρχει πρότζεκτ με ταυτότη�
 thumbnailAvailability = "Οι σύνδεσμοι για τα εικονίδια του πρότζεκτ είναι προσβάσιμα σε ένα γραπτό αρχείο."
 thumbnailLinks = "Εικονίδια:"
 
+[get_studio]
+# Queries
+enterStudioQuery = "Εισάγετε ταυτότητα στούντιο:"
+
+# Awaiters
+loadingTitleAwaiter = "Φόρτωση ονόματος στούντιο..."
+loadingHostIDAwaiter = "Φόρτωση ταυτότητας διαχειριστή στούντιο..."
+loadingDescriptionAwaiter = "Φόρτωση περιγραφής στούντιο..."
+loadingHasCommentsAwaiter = "Έλεγχος κατάστασης σχολίων στούντιο..."
+loadingIsOpenAwaiter = "Έλεγχος κατάστασης διαχείρισης πρότζεκτ..."
+loadingCommentsAwaiter = "Φόρτωση ποσότητας σχολίων..."
+loadingFollowersAwaiter = "Φόρτωση ποσότητας ακολούθων..."
+loadingManagersAwaiter = "Φόρτωση ποσότητας διαχειριστών..."
+loadingProjectsAwaiter = "Φόρτωση ποσότητας πρότζεκτ..."
+loadingCreationDateAwaiter = "Φόρτωση ημερομηνίας δημιουργίας..."
+loadingEditDateAwaiter = "Φόρτωση ημερομηνίας τελυταίας τροποποίησης..."
+loadingThumbnailAwaiter = "Φόρτωση εικονιδίου στούντιο..."
+
+# Template Replacers
+hasDescriptionReplacer = "Περιγραφή:"
+noDescriptionReplacer = "Η στήλη περιγραφής του στούντιο είναι άδεια."
+hasCommentsReplacer = "Το στούντιο επιτρέπει την προσθήκη σχολίων."
+noCommentsReplacer = "Η στήλη σχολίων του στούντιο είναι κλειστή."
+allowsAnyProjectsReplacer = "Το στούντιο επιτρέπει την προσθήκη πρότζεκτ από όλα τα μέλη."
+forbidsAnyProjectReplacer = "Το στούντιο δεν επιτρέπει την προσθήκη πρότζεκτ από μη-μέλη."
+
+# Other text
+studioID = "Ταυτότητα Στούντιο¨"
+studioInexistent = "Δεν υπάρχει στούντιο με ταυτότητα στούντιο STUDIO_ID."
+thumbnailAvailability = "Ο σύνδεσμος για το εικονίδιο του στούντιο είναι διαθέσιμο σε ένα γραπτό αρχείο."
+thumbnailLink = "Σύνδεσμος εικονιδίου (170x100):"
+
 [language_changing]
 introduction = "Αλλαγή γλώσσας"
 languageListIntroduction = "Λίστα επιλογών γλώσσας:"

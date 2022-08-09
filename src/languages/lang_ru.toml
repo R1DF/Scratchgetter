@@ -219,7 +219,7 @@ forbidsAnyProjectsReplacer = "Только члены студии могут д
 
 # Other text
 studioID = "ID студии:"
-studioInexistent = "Студия с ID STUDIO_DATA не существует."
+studioInexistent = "Студия с ID STUDIO_ID не существует."
 thumbnailAvailability = "Ссылка на изображение студии есть в текстовом файле."
 thumbnailLink = "Ссылка на изображение (170x100):"
 

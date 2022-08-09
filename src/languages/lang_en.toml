@@ -220,7 +220,7 @@ forbidsAnyProjectsReplacer = "The studio doesn't allow projects to be added by n
 
 # Other text
 studioID = "Studio ID:"
-studioInexistent = "The studio with the ID STUDIO_DATA does not exist."
+studioInexistent = "The studio with the ID STUDIO_ID does not exist."
 thumbnailAvailability = "The link to the thumbnail of the studio is available in a text file."
 thumbnailLink = "Link to thumbnail (170x100):"
 
