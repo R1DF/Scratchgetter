@@ -79,7 +79,6 @@ class FileViewer:
         files = []
 
         for element in os.listdir(path):
-            print(element)
             if element.split(".")[-1] == "toml":
                 if validate_key(toml.load(path + element)["randomized_key"]):
                     files.append(element)
