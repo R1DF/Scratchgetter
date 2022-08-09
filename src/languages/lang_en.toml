@@ -12,7 +12,7 @@ dateFormatterFile = "date_formatters.df_lang_en"
 # Queries
 enterFileFolderQuery = "Enter file folder (Press Tab for hints) :"
 enterFileNameQuery = "Enter file name:"
-saveFileQuery = "Save the text file?"
+saveFileQuery = "Save the .toml file?"
 
 # Other
 yes = "Yes"
@@ -27,6 +27,7 @@ error = "Error!"
 
 enterToContinue = "Press Enter to continue."
 enterToExit = "Press Enter to exit."
+enterToRetry = "Press Enter to retry."
 
 monthsFormatted = [
     "January",
@@ -121,8 +122,9 @@ options = [
     "Get user information (requires username)", # 0
     "Get project information (requires project ID)", # 1
     "Get studio information (requires studio ID)", # 2
-    "Change language", # 3
-    "Quit" # 4
+    "View saved information (requires .toml file)", # 3
+    "Change language", # 4
+    "Quit" # 5
 ]
 
 [get_user]
@@ -150,7 +152,7 @@ noWIWOReplacer = "The user's \"What I'm Working On\" section is empty."
 # Other text
 user = "User:"
 userObtained = "User obtained."
-imageAvailability = "Links to images for the profile pictures are accessible in a text file."
+imageAvailability = "Links to images for the profile pictures are accessible in a .toml file."
 PFPLinks = "Profile pictures:"
 userInexistent = "The user USERNAME does not exist."
 
@@ -189,7 +191,7 @@ noCommentsReplacer = "The project's comments section is closed."
 # Other text
 projectID = "Project ID:"
 projectInexistent = "The project with an ID of PROJECT_ID does not exist or isn't published."
-thumbnailAvailability = "Links to images for the project's thumbnails are accessible in a text file."
+thumbnailAvailability = "Links to images for the project's thumbnails are accessible in a .toml file."
 thumbnailLinks = "Thumbnails:"
 
 [get_studio]
@@ -223,6 +225,20 @@ studioID = "Studio ID:"
 studioInexistent = "The studio with the ID STUDIO_ID does not exist."
 thumbnailAvailability = "The link to the thumbnail of the studio is available in a text file."
 thumbnailLink = "Link to thumbnail (170x100):"
+
+[view_file]
+# Queries
+inDefaultPathQuery = "Is the file you wish to see saved in the default path?"
+selectPathQuery = "Which sub-folder contains the file you would like to see?"
+enterPathQuery = "Enter the path to the folder that contains the .toml file (Press Tab for hints) :"
+noFiles = "There are no .toml files in the folder."
+fileList = "List of viles to view:"
+options = [
+    "/users/ (contains user information)",
+    "/projects/ (contains project information)",
+    "/studios/ (contains studio information)"
+]
+
 
 [language_changing]
 introduction = "Change language"
