@@ -4,6 +4,7 @@ from language_changing_process import LanguageChangingProcess
 from user_getter import *
 from project_getter import *
 from studio_getter import *
+from file_viewer import *
 import questionary
 import requests
 import os
@@ -63,10 +64,16 @@ class App:
 
                 elif user_input == self.ld["introduction"]["options"][1]:
                     self.project_process = ProjectProcess(self)
+
                 elif user_input == self.ld["introduction"]["options"][2]:
                     self.studio_process = StudioProcess(self)
-                elif user_input == self.ld["introduction"]["options"][3]:
+
+                elif user_input == user_input == self.ld["introduction"]["options"][3]:
+                    self.file_viewer = FileViewer(self)
+
+                elif user_input == self.ld["introduction"]["options"][4]:
                     self.language_changing_process = LanguageChangingProcess(self)
+
                 else:
                     clear()
                     quit()
