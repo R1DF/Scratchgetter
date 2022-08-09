@@ -6,18 +6,24 @@ description = "Το προεγκατεστημένο αρχείο της ελλ�
 for_version = "1.0.0"
 
 [linked]
-userTemplateFile = "user_lang_gr.txt"
 dateFormatterFile = "date_formatters.df_lang_gr"
-templateOffset = 34 #
 
 [reusable]
+# Queries
+enterFileFolderQuery = "Εισάγετε τον φάκελο του αρχείου (Πιέστε το πλήκτρο Tab για στοιχεία) :"
+enterFileNameQuery = "Πληκτρολογήστε το όνομα του αρχείου:"
+saveFileQuery = "Αποθήκευση του γραπτού αρχείου;"
+
+# Other
 yes = "ναι"
 no = "όχι"
 cancel = "Ακύρωση"
 
 connectingToAPIAwaiter = "Σύνδεση με το Scratch API..."
 collectingDataAwaiter = "Συλλογή δεδομένων αίτησης..."
+
 success = "Επιτυχία."
+error = "Σφάλμα!"
 
 enterToContinue = "Πατήστε το πλήκτρο Enter για να συνεχίσετε."
 enterToExit = "Πατήστε το πλήκτρο Enter για έξοδο."
@@ -62,6 +68,32 @@ WIWO
 https://api.scratch.mit.edu/users/USERNAME/\
 """
 
+project = """
+Περιεχόμενα πρότζεκτ:
+Ταυτότητα: PROJECT_ID
+IS_REMIX
+
+Τίτλος: \"TITLE\"
+Συγγραφέας: AUTHOR
+Token: PROJECT_TOKEN
+Δημιουργήθηκε στις DATE_CREATED
+Τελευταία τροποποίηση στις DATE_LAST_EDITED
+Δημοσιεύτηκε στις DATE_PUBLISHED
+
+VIEWS προβολές
+LOVES "μου αρέσει"
+FAVOURITES αγαπημένα
+REMIXES remix
+
+INSTRUCTIONS
+
+DESCRIPTION
+
+HAS_COMMENTS
+
+Σύνδεσμος ανταπόκρισης API: https//api.scratch.mit.edu/projects/PROJECT_ID\
+"""
+
 [introduction]
 welcome = "Καλώς ήρθατε στο Scratchgetter v1.0.0., γραμμένο από τον R1DF."
 legalNotice = "Όλα τα δεδομένα συλλέχθηκαν νόμιμα από το Scratch API."
@@ -77,9 +109,6 @@ options = [
 [get_user]
 # Queries
 enterUsernameQuery = "Πληκτρολογήστε το όνομα χρήστη:"
-enterFileFolderQuery = "Εισάγετε τον φάκελο του αρχείου (Πιέστε το πλήκτρο Tab για στοιχεία) :"
-enterFileNameQuery = "Πληκτρολογήστε το όνομα του αρχείου:"
-saveFileQuery = "Αποθήκευση του γραπτού αρχείου;"
 
 # Awaiters
 loadingSTStatusAwaiter = "Έλεγχος ST status..."
@@ -104,6 +133,45 @@ user = "Χρήστης:"
 userObtained = "Χρήστης ελήφθη."
 imageAvailability = "Οι σύνδεσμοι για τις εικόνες προφίλ είναι προσβάσιμες σε ένα γραπτό αρχείο."
 PFPLinks = "Σύνδεσμοι εικόνων προφίλ:"
+userInexistent = "Δεν υπάρχει χρήστης USERNAME."
+
+[get_project]
+# Queries
+enterProjectIDQuery = "Εισάγετε ταυτότητα πρότζεκτ:"
+
+# Awaiters
+loadingTitleAwaiter = "Φόρτωση τίτλου..."
+loadingVisibilityAwaiter = "Καθορισμός ορατότητας του πρότζεκτ..."
+loadingIsRemixAwaiter = "Καθορισμός εάν το πρότζεκτ αποτελεί remix..."
+loadingAuthorAwaiter = "Φόρτωση συγγραφέα..."
+loadingTokenAwaiter = "Φόρτωση token του πρότζεκτ..."
+loadingCreationDateAwaiter = "Φόρτωση ημερομηνίας δημιουργίας..."
+loadingEditDateAwaiter = "Φόρτωση ημερομηνίας τελευταίας επεξεργασίας..."
+loadingPublishDateAwaiter = "Φόρτωση ημερομηνίας τελευταίας δημοσιοποίησης..."
+loadingViewsAwaiter = "Φόρτωση προβολών..."
+loadingLovesAwaiter = "Φόρτωση 'μου αρέσει' ..."
+loadingFavouritesAwaiter = "Φόρτωση αγαπημένων..."
+loadingRemixesAwaiter = "Φόρτωση remix..."
+loadingInstructionsAwaiter = "Φόρτωση οδηγιών..."
+loadingDescriptionAwaiter = "Φόρτωση περιγραφής..."
+loadingHasCommentsAwaiter = "Καθορισμός ρυθμίσεων σχολίων του πρότζεκτ..."
+loadingThumbnailsAwaiter = "Φόρτωση thumbnail..."
+
+# Template Replacers
+isRemixReplacer = "Το πρότζεκτ αποτελεί remix. (Ταυτότητα αρχικού: PARENT_ID; Ταυτότητα δέντρου: ROOT_ID)"
+notRemixReplacer = "Το πρότζεκτ δεν αποτελεί remix."
+hasInstructionsReplacer = "Οδηγίες:"
+noInstructionsReplacer = "Η στήλη οδηγιών του πρότζεκτ είναι άδεια."
+hasDescriptionReplacer = "Περιγραφή:"
+noDescriptionReplacer = "Η στήλη περιγραφής του πρότζεκτ είναι άδεια."
+hasCommentsReplacer = "Το πρότζεκτ επιτρέπει την προσθήκη σχολίων."
+noCommentsReplacer = "Η στήλη σχολίων του πρότζεκτ είναι κλειστή."
+
+# Other text
+projectID = "Ταυτότητα πρότζεκτ:"
+projectInexistent = "Δεν υπάρχει πρότζεκτ με ταυτότητα PROJECT_ID, ή δεν έχει δημοσιευθεί."
+thumbnailAvailability = "Οι σύνδεσμοι για τα εικονίδια του πρότζεκτ είναι προσβάσιμα σε ένα γραπτό αρχείο."
+thumbnailLinks = "Εικονίδια:"
 
 [language_changing]
 introduction = "Αλλαγή γλώσσας"

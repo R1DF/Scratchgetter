@@ -9,14 +9,21 @@ for_version = "1.0.0"
 dateFormatterFile = "date_formatters.df_lang_en"
 
 [reusable]
+# Queries
+enterFileFolderQuery = "Enter file folder (Press Tab for hints) :"
+enterFileNameQuery = "Enter file name:"
+saveFileQuery = "Save the text file?"
+
+# Other
 yes = "Yes"
 no = "No"
 cancel = "Cancel"
 
 connectingToAPIAwaiter = "Connecting to the Scratch API..."
 collectingDataAwaiter = "Collecting request data..."
-error = "Error!"
+
 success = "Success."
+error = "Error!"
 
 enterToContinue = "Press Enter to continue."
 enterToExit = "Press Enter to exit."
@@ -62,7 +69,6 @@ API response link: https://api.scratch.mit.edu/users/USERNAME/\
 project = """
 Project contents:
 ID: PROJECT_ID
-IS_VISIBLE
 IS_REMIX
 
 Title: \"TITLE\"
@@ -72,10 +78,10 @@ Created on DATE_CREATED
 Last edit on DATE_LAST_EDITED
 Published on DATE_PUBLISHED
 
-VIEWS views
-LOVES loves
-FAVOURITES favourites
-REMIXES remixes
+Views: VIEWS
+Loves: LOVES
+Favourites FAVOURITES
+Remixes: REMIXES
 
 INSTRUCTIONS
 
@@ -83,9 +89,28 @@ DESCRIPTION
 
 HAS_COMMENTS
 
+API response link: https//api.scratch.mit.edu/projects/PROJECT_ID/\
+"""
 
-API response link: https//api.scratch.mit.edu/projects/PROJECT_ID/
-\
+studio = """
+Studio contents:
+ID: STUDIO_ID
+ALLOWS_COMMENTING
+ALLOWS_ANY_PROJECT
+
+Host ID: HOST_ID
+Created on DATE_CREATED
+Last edit on DATE_LAST_EDITED
+
+Comments: COMMENTS
+Followers: FOLLOWERS
+Managers: MANAGERS
+Projects: PROJECTS
+
+DESCRIPTION
+
+
+API response link: https//api.scratch.mit.edu/studios/STUDIO_ID/\
 """
 
 [introduction]
@@ -103,9 +128,6 @@ options = [
 [get_user]
 # Queries
 enterUsernameQuery = "Enter username:"
-enterFileFolderQuery = "Enter file folder (Press Tab for hints) :"
-enterFileNameQuery = "Enter file name:"
-saveFileQuery = "Save the text file?"
 
 # Awaiters
 loadingSTStatusAwaiter = "Checking ST status..."
@@ -129,16 +151,16 @@ noWIWOReplacer = "The user's \"What I'm Working On\" section is empty."
 user = "User:"
 userObtained = "User obtained."
 imageAvailability = "Links to images for the profile pictures are accessible in a text file."
-PFPLinks = "Profile picture links:"
+PFPLinks = "Profile pictures:"
 userInexistent = "The user USERNAME does not exist."
 
 [get_project]
-#Queries
+# Queries
 enterProjectIDQuery = "Enter project ID:"
 
 # Awaiters
 loadingTitleAwaiter = "Loading title..."
-loadingVisibilityAwaiter = "Determining if the projet is visible..."
+loadingVisibilityAwaiter = "Determining if the project is visible..."
 loadingIsRemixAwaiter = "Determining if the project is a remix..."
 loadingAuthorAwaiter = "Loading author..."
 loadingTokenAwaiter = "Loading project token..."
@@ -150,15 +172,13 @@ loadingLovesAwaiter = "Loading loves..."
 loadingFavouritesAwaiter = "Loading favourites..."
 loadingRemixesAwaiter = "Loading remixes..."
 loadingInstructionsAwaiter = "Loading instructions..."
-loadingDescriptionAwaiter = "Loading description..."
+loadingDescriptionAwaiter = "Loading project description..."
 loadingHasCommentsAwaiter = "Determining if the project allows commenting..."
 loadingThumbnailsAwaiter = "Loading thumbnails..."
 
 # Template Replacers
 isRemixReplacer = "The project is a remix. (Parent ID: PARENT_ID; Root ID: ROOT_ID)"
 notRemixReplacer = "The project is not a remix."
-isVisibleReplacer = "The project is visible."
-notVisibleReplacer = "The project is not visible."
 hasInstructionsReplacer = "Instructions:"
 noInstructionsReplacer = "The project's \"Instructions\" section is empty."
 hasDescriptionReplacer = "Description:"
@@ -168,7 +188,41 @@ noCommentsReplacer = "The project's comments section is closed."
 
 # Other text
 projectID = "Project ID:"
-projectInexistent = "The project with an ID of PROJECT_ID does not exist."
+projectInexistent = "The project with an ID of PROJECT_ID does not exist or isn't published."
+thumbnailAvailability = "Links to images for the project's thumbnails are accessible in a text file."
+thumbnailLinks = "Thumbnails:"
+
+[get_studio]
+# Queries
+enterStudioIDQuery = "Enter studio ID:"
+
+# Awaiters
+loadingTitleAwaiter = "Loading studio name..."
+loadingHostIDAwaiter = "Loading the studio host's ID..."
+loadingDescriptionAwaiter = "Loading studio description..."
+loadingHasCommentsAwaiter = "Determining if the studio allows commenting..."
+loadingIsOpenAwaiter = "Determining if the studio allows anyone to add projects they want..."
+loadingCommentsAwaiter = "Loading amount of comments..."
+loadingFollowersAwaiter = "Loading amount of followers..."
+loadingManagersAwaiter = "Loading amount of managers..."
+loadingProjectsAwaiter = "Loading amount of projects..."
+loadingCreationDateAwaiter = "Loading creation date..."
+loadingEditDateAwaiter = "Loading date since last edit..."
+loadingThumbnailAwaiter = "Loading studio thumbnail..."
+
+# Template Replacers
+hasDescriptionReplacer = "Description:"
+noDescriptionReplacer = "The studio has an empty description."
+hasCommentsReplacer = "The studio allows comments to be added."
+noCommentsReplacer = "The studio's comment section is closed."
+allowsAnyProjectsReplacer = "The studio allows projects to be added by any member."
+forbidsAnyProjectsReplacer = "The studio doesn't allow projects to be added by non-members."
+
+# Other text
+studioID = "Studio ID:"
+studioInexistent = "The studio with the ID STUDIO_DATA does not exist."
+thumbnailAvailability = "The link to the thumbnail of the studio is available in a text file."
+thumbnailLink = "Link to thumbnail (170x100):"
 
 [language_changing]
 introduction = "Change language"
