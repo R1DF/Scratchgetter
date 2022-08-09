@@ -94,6 +94,27 @@ HAS_COMMENTS
 Σύνδεσμος ανταπόκρισης API: https//api.scratch.mit.edu/projects/PROJECT_ID\
 """
 
+studio = """
+Περιεχόμενα στούντιο:
+Ταυτότητα: STUDIO_ID
+ALLOWS_COMMENTING
+ALLOWS_ANY_PROJECT
+
+Τατυτότητα Διαχειριστή: HOST_ID
+Δημιουργήθηκε στις DATE_CREATED
+Τελευταία τροποποίηση στις DATE_LAST_EDITED
+
+Σχόλια: COMMENTS
+Ακόλουθοι: FOLLOWERS
+Διαχειριστές: MANAGERS
+Πρότζεκτ: PROJECTS
+
+Περιγραφή
+
+
+Σύνδεσμος ανταπόκρισης API: https//api.scratch.mit.edu/studios/STUDIO_ID/\
+"""
+
 [introduction]
 welcome = "Καλώς ήρθατε στο Scratchgetter v1.0.0., γραμμένο από τον R1DF."
 legalNotice = "Όλα τα δεδομένα συλλέχθηκαν νόμιμα από το Scratch API."
