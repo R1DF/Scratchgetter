@@ -4,6 +4,7 @@ import requests
 import datetime
 import questionary
 import importlib
+import toml
 
 # Constants
 API_USER = "https://api.scratch.mit.edu/users/~/"
@@ -87,13 +88,17 @@ class UserProcess:
         return profile_data
 
     def save_user(self, path, details, profile_picture_links):
+        content = details + f"\n\n{self.ld['get_user']['PFPLinks']}\n"
+
         resolutions = ("90x90", "60x60", "55x55", "50x50", "32x32")
-        with open(path + ".txt", encoding="utf-8", mode="w") as f:
-            f.write(details)
-            f.write(f"\n\n{self.ld['get_user']['PFPLinks']}\n")
-            for resolution in range(len(resolutions)):
-                f.write(f"{resolutions[resolution]}: {profile_picture_links[resolutions[resolution]]}\n")
-            f.write(f"\n{str(datetime.datetime.now())}")
+        for resolution in range(len(resolutions)):
+            content += f"{resolutions[resolution]}: {profile_picture_links[resolutions[resolution]]}\n"
+        content += f"\n{str(datetime.datetime.now())}"
+
+        toml.dump({
+            "randomized_key": randomize_key(),
+            "content": content
+        }, open(path + ".toml", "w", encoding="utf-8"))
 
     def reveal_user(self, details):
         # Getting output from template
@@ -160,7 +165,7 @@ class UserProcess:
 
         if should_save == self.ld["reusable"]["yes"]:
             path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
-                                    default=os.getcwd() + "\\saves\\").ask()
+                                    default=os.getcwd() + "\\saves\\users\\").ask()
             file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
                                          default=username).ask().strip()
             self.save_user(path + "\\" + file_name, formatted_response, profile_pictures)

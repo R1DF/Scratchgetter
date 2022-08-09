@@ -4,6 +4,7 @@ import requests
 import datetime
 import questionary
 import importlib
+import toml
 
 # Constants
 API_STUDIO = "https://api.scratch.mit.edu/studios/~/"
@@ -24,8 +25,11 @@ class StudioProcess:
         self.begin_studio_process()
 
     def save_studio(self, path, details, thumbnail):
-        with open(path + ".txt", encoding="utf-8", mode="w") as f:
-            f.write(f"{details}\n\n{self.ld['get_studio']['thumbnailLink']}\n{thumbnail}\n\n{str(datetime.datetime.now())}")
+        toml.dump({
+            "randomized_key": randomize_key(),
+            "content": f"{details}\n\n{self.ld['get_studio']['thumbnailLink']}\n{thumbnail}\n\n{str(datetime.datetime.now())}"
+        }, open(path + ".toml", "w", encoding="utf-8"))
+
 
     def reveal_studio(self, details):
         # Getting output from template
@@ -180,7 +184,7 @@ class StudioProcess:
 
         if should_save == self.ld["reusable"]["yes"]:
             path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
-                                    default=os.getcwd() + "\\saves\\").ask()
+                                    default=os.getcwd() + "\\saves\\studios\\").ask()
             file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
                                          default=f"studio_{studio_id}").ask().strip()
             self.save_studio(path + "\\" + file_name, formatted_response, thumbnails)

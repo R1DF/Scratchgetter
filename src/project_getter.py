@@ -4,7 +4,7 @@ import requests
 import datetime
 import questionary
 import importlib
-
+import toml
 # Constants
 API_PROJECT = "https://api.scratch.mit.edu/projects/~/"
 
@@ -24,13 +24,17 @@ class ProjectProcess:
         self.begin_project_process()
 
     def save_project(self, path, details, thumbnails):
+        content = details + f"\n\n{self.ld['get_project']['thumbnailLinks']}\n"
+
         resolutions = ("480x360", "282x218", "216x163", "200x200", "144x108", "135x102", "100x80")
-        with open(path + ".txt", encoding="utf-8", mode="w") as f:
-            f.write(details)
-            f.write(f"\n\n{self.ld['get_project']['thumbnailLinks']}\n")
-            for resolution in range(len(resolutions)):
-                f.write(f"{resolutions[resolution]}: {thumbnails[resolutions[resolution]]}\n")
-            f.write(f"\n{str(datetime.datetime.now())}")
+        for resolution in range(len(resolutions)):
+            content += f"{resolutions[resolution]}: {thumbnails[resolutions[resolution]]}\n"
+        content += f"\n{str(datetime.datetime.now())}"
+
+        toml.dump({
+            "randomized_key": randomize_key(),
+            "content": content
+        }, open(path + ".toml", "w", encoding="utf-8"))
 
     def reveal_project(self, details):
         # Getting output from template
@@ -206,7 +210,7 @@ class ProjectProcess:
 
         if should_save == self.ld["reusable"]["yes"]:
             path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
-                                    default=os.getcwd() + "\\saves\\").ask()
+                                    default=os.getcwd() + "\\saves\\projects\\").ask()
             file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
                                          default=f"project_{project_id}").ask().strip()
             self.save_project(path + "\\" + file_name, formatted_response, thumbnails)
