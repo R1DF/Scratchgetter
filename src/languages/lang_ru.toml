@@ -14,6 +14,9 @@ enterFileFolderQuery = "Введите папку файла (Нажмите Tab
 enterFileNameQuery = "Введите имя файла:"
 saveFileQuery = "Сохранить .toml файл?"
 
+# Other
+restartDetected = "Перезапускаю..."
+
 yes = "Да"
 no = "Нет"
 cancel = "Отмена"
@@ -115,6 +118,7 @@ DESCRIPTION
 [introduction]
 welcome = "Добро пожаловать к Scratchgetter v1.0.0., написанно R1DF."
 legalNotice = "Все данне получены законно используя Scratch API."
+restartInfo = "Нажмите сочетание клавиш Ctrl+C чтобы перезапустить."
 optionsQuery = "Выберите что вы желаете сделать:"
 options = [
     "Получить данные пользователя (нужен имя)", # 0
@@ -233,3 +237,4 @@ selectLanguageQuery = "Изменить язык:"
 author = "Автор:"
 description = "Описание:"
 cancel = "Отмена"
+restartNeeded = "Язык поменяеться следующей загрузкой программы. (Не через сочетания Ctrl+C)"

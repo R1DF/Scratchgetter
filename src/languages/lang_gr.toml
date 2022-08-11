@@ -15,6 +15,8 @@ enterFileNameQuery = "Πληκτρολογήστε το όνομα του αρχ
 saveFileQuery = "Αποθήκευση αρχείου .toml ;"
 
 # Other
+restartDetected = "Ανιχνεύθηκε αίτηση επανεκκίνησης!"
+
 yes = "ναι"
 no = "όχι"
 cancel = "Ακύρωση"
@@ -118,6 +120,7 @@ ALLOWS_ANY_PROJECT
 [introduction]
 welcome = "Καλώς ήρθατε στο Scratchgetter v1.0.0., γραμμένο από τον R1DF."
 legalNotice = "Όλα τα δεδομένα συλλέχθηκαν νόμιμα από το Scratch API."
+restartInfo = "Πιέζοντας Ctrl+C δίνετε το έναυσμα για επανεκκίνηση."
 optionsQuery = "Επιλέξτε ένα από τα παρακάτω:"
 options = [
     "Εισάγετε πληροφορίες χρήστη (απαιτείται όνομα χρήστη)",
@@ -235,3 +238,4 @@ ifZero = "... Μπράβο :( Τώρα πρέπει να εγκαταστήσε�
 selectLanguageQuery = "Επιλογή γλώσσας:"
 author = "Συγγραφέας:"
 description = "Περιγραφή:"
+restartNeeded = "Η γλώσσα θα αλλάξει με την επόμενη επανεκκίνηση. (Δεν πρέπει να προκληθεί από το Ctrl+C)"

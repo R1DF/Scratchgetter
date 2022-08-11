@@ -15,6 +15,8 @@ enterFileNameQuery = "Enter file name:"
 saveFileQuery = "Save the .toml file?"
 
 # Other
+restartDetected = "Restart request detected!"
+
 yes = "Yes"
 no = "No"
 cancel = "Cancel"
@@ -117,6 +119,7 @@ API response link: https//api.scratch.mit.edu/studios/STUDIO_ID/\
 [introduction]
 welcome = "Welcome to Scratchgetter v1.0.0., written by R1DF."
 legalNotice = "All data is legally obtained by the Scratch API."
+restartInfo = "Pressing Ctrl+C will trigger a restart."
 optionsQuery = "Select what you would like to do:"
 options = [
     "Get user information (requires username)", # 0
@@ -248,3 +251,4 @@ ifZero = "...Not cool. Now you have to reinstall me because I can't function wit
 selectLanguageQuery = "Select language:"
 author = "Author:"
 description = "Description:"
+restartNeeded = "The language will change next startup. (Must not be triggered via Ctrl+C)"
