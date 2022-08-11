@@ -1,1 +1,2 @@
 language = "lang_en.toml"
+override_internet_check = false
