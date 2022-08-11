@@ -20,6 +20,7 @@ For both releases and downloads, check out the Release section.
 
 ## Credits
 I've used the [questionary](https://github.com/tmbo/questionary) library for easier CLI. Check it out, it's awesome.<br>
+I've used the [rich](https://github.com/Textualize/rich) library for coloured text.<br>
 I implemented the default English and Russian translations myself.<br>
 Greek translation by Angel. Ευχαριστώ!
 
