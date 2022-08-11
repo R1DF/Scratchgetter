@@ -50,7 +50,7 @@ class LanguageChangingProcess:
         return questionary.select(
             self.ld["language_changing"]["selectLanguageQuery"],
             choices=options
-        ).ask()
+        ).unsafe_ask()
 
     def begin_process(self):
         clear()
@@ -62,8 +62,11 @@ class LanguageChangingProcess:
 
             self.user_input = self.get_user_input(self.valid_languages)
             if self.user_input != self.ld["reusable"]["cancel"]:
-                new_data = {"language": self.find_language_filename_by_name(self.valid_languages, self.user_input)}
+                new_data = toml.load(os.getcwd() + "\\conf.toml") # so that other data doesn't go ignored
+                new_data["language"] = self.find_language_filename_by_name(self.valid_languages, self.user_input)
                 toml.dump(new_data, open(os.getcwd() + "\\conf.toml", "w"))
+                print(self.ld["language_changing"]["restartNeeded"])
+                await_enter(self.ld, to_exit=True)
         elif len(self.valid_languages) == 1:
             clear()
             print(self.ld["language_changing"]["ifOne"])

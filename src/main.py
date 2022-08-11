@@ -5,6 +5,7 @@ from user_getter import *
 from project_getter import *
 from studio_getter import *
 from file_viewer import *
+from rich import print as rprint
 import questionary
 import requests
 import os
@@ -19,16 +20,21 @@ os.system("title Scratchgetter")
 # Main loop
 class App:
     def __init__(self):
-        # Version number
+        # Version number and stage
         self.version = "1.0.0"
+        self.stage = None
 
         # Getting language
-        self.ll = LanguageLoader()  # ll - language loader
-        self.ld = self.ll.data  # ld - language data
+        self.get_language()
 
         # Processes
         self.initial_internet_check()
+        self.stage = "main"
         self.main()
+
+    def get_language(self):
+        self.ll = LanguageLoader()  # ll - language loader
+        self.ld = self.ll.data  # ld - language data
 
     def initial_internet_check(self):
         print(self.ld["tests"]["testingConnection"])
@@ -50,13 +56,14 @@ class App:
         try:
             while True:
                 print(self.ld["introduction"]["welcome"])
+                print(self.ld["introduction"]["restartInfo"])
                 print(self.ld["introduction"]["legalNotice"])
                 break_line()
 
                 user_input = questionary.select(
                     self.ld["introduction"]["optionsQuery"],
                     choices=self.ld["introduction"]["options"]
-                ).ask()
+                ).unsafe_ask()
                 break_line()
 
                 if user_input == self.ld["introduction"]["options"][0]:
@@ -80,11 +87,20 @@ class App:
 
         except ConnectionError:
             clear()
-            print(self.ld["tests"]["internetConnectionFailure"])
+            rprint(self.RED + self.ld["tests"]["internetConnectionFailure"])
             await_enter(self.ld, to_exit=True)
             clear()
             quit()
 
 
-# Creating App instance
-app = App()
+# Eternal program that ends only when the user picks the quit option
+while True:
+    try:
+        app = App()
+
+    except KeyboardInterrupt:
+        clear()
+        print(LanguageLoader().data["reusable"]["restartDetected"]) # reloads language
+        continue
+
+clear()
