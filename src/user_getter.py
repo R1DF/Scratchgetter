@@ -130,7 +130,7 @@ class UserProcess:
     def begin_user_process(self):
         # Getting user input
         username = questionary.text(self.ld["get_user"]["enterUsernameQuery"],
-                                    validate=lambda x: x.strip() != "").ask().strip()
+                                    validate=lambda x: x.strip() != "").unsafe_ask().strip()
 
         # Getting profile content
         clear()
@@ -161,13 +161,13 @@ class UserProcess:
                 self.ld["reusable"]["yes"],
                 self.ld["reusable"]["no"]
             ]
-        ).ask()
+        ).unsafe_ask()
 
         if should_save == self.ld["reusable"]["yes"]:
             path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
-                                    default=os.getcwd() + "\\saves\\users\\").ask()
+                                    default=os.getcwd() + "\\saves\\users\\").unsafe_ask()
             file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
-                                         default=username).ask().strip()
+                                         default=username).unsafe_ask().strip()
             self.save_user(path + "\\" + file_name, formatted_response, profile_pictures)
             print(self.ld["reusable"]["success"])
             await_enter(self.ld, to_exit=True)

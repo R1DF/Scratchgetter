@@ -153,7 +153,7 @@ class StudioProcess:
     def begin_studio_process(self):
         # Getting user input
         studio_id = questionary.text(self.ld["get_studio"]["enterStudioIDQuery"],
-                                      validate=lambda x: x.isnumeric()).ask().strip()
+                                      validate=lambda x: x.isnumeric()).unsafe_ask().strip()
 
         # Getting project content
         clear()
@@ -180,13 +180,13 @@ class StudioProcess:
                 self.ld["reusable"]["yes"],
                 self.ld["reusable"]["no"]
             ]
-        ).ask()
+        ).unsafe_ask()
 
         if should_save == self.ld["reusable"]["yes"]:
             path = questionary.path(self.ld["reusable"]["enterFileFolderQuery"], only_directories=True,
-                                    default=os.getcwd() + "\\saves\\studios\\").ask()
+                                    default=os.getcwd() + "\\saves\\studios\\").unsafe_ask()
             file_name = questionary.text(self.ld["reusable"]["enterFileNameQuery"], validate=lambda x: x.strip() != "",
-                                         default=f"studio_{studio_id}").ask().strip()
+                                         default=f"studio_{studio_id}").unsafe_ask().strip()
             self.save_studio(path + "\\" + file_name, formatted_response, thumbnails)
             print(self.ld["reusable"]["success"])
             await_enter(self.ld, to_exit=True)
