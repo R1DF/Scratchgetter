@@ -90,7 +90,7 @@ class App:
 
         except ConnectionError:
             clear()
-            rprint(self.RED + self.ld["tests"]["internetConnectionFailure"])
+            rprint("[red]" + self.ld["tests"]["internetConnectionFailure"])
             await_enter(self.ld, to_exit=True)
             clear()
             raise End
