@@ -17,6 +17,10 @@ API = "https://api.scratch.mit.edu"
 clear()
 os.system("title Scratchgetter")
 
+# This exception will end the program
+class End(Exception):
+    pass
+
 # Main loop
 class App:
     def __init__(self):
@@ -29,7 +33,6 @@ class App:
 
         # Processes
         self.initial_internet_check()
-        self.stage = "main"
         self.main()
 
     def get_language(self):
@@ -83,14 +86,14 @@ class App:
 
                 else:
                     clear()
-                    quit()
+                    raise End
 
         except ConnectionError:
             clear()
             rprint(self.RED + self.ld["tests"]["internetConnectionFailure"])
             await_enter(self.ld, to_exit=True)
             clear()
-            quit()
+            raise End
 
 
 # Eternal program that ends only when the user picks the quit option
@@ -102,5 +105,8 @@ while True:
         clear()
         print(LanguageLoader().data["reusable"]["restartDetected"]) # reloads language
         continue
+
+    except End:
+        break
 
 clear()
