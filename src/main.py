@@ -53,7 +53,7 @@ class App:
             print(self.ld["tests"]["internetConnectionFailure"])
             await_enter(self.ld, to_exit=True)
             clear()
-            quit()
+            raise End
 
     def main(self):
         try:
@@ -96,7 +96,7 @@ class App:
             raise End
 
 
-# Eternal program that ends only when the user picks the quit option
+# Eternal program that ends only when the user picks the quit option or internet connection fails
 while True:
     try:
         app = App()
